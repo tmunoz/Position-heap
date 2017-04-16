@@ -1,0 +1,18 @@
+#include <iostream>
+#include "heap.h"
+#include "node.h"
+#include "childtable.h"
+
+int main(){
+    string* a;
+    int n=4;
+    a = new string[n];
+    a[0]="abaa";
+    a[1]="babb";
+    a[2]="abba";
+    a[3]="b$";
+    heap *h;
+    h = new heap(a,n);
+    h->build();
+    h->print(h->getRoot());
+}

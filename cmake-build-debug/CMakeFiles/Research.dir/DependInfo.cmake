@@ -1,0 +1,23 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/Thomas/Documents/Research/childtable.cpp" "/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles/Research.dir/childtable.cpp.o"
+  "/Users/Thomas/Documents/Research/heap.cpp" "/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles/Research.dir/heap.cpp.o"
+  "/Users/Thomas/Documents/Research/main.cpp" "/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles/Research.dir/main.cpp.o"
+  "/Users/Thomas/Documents/Research/node.cpp" "/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles/Research.dir/node.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")
