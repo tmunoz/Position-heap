@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/Thomas/Documents/Research/cmake-build-debug"/>
+				<Option working_dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/Thomas/Documents/Research/cmake-build-debug"/>
+				<Option working_dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/Thomas/Documents/Research/cmake-build-debug"/>
+				<Option working_dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Research">
-				<Option output="/Users/Thomas/Documents/Research/cmake-build-debug/Research" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Thomas/Documents/Research/cmake-build-debug"/>
+				<Option output="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/Research" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,15 +53,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 Research"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 Research"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Research/fast">
-				<Option output="/Users/Thomas/Documents/Research/cmake-build-debug/Research" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Thomas/Documents/Research/cmake-build-debug"/>
+				<Option output="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/Research" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -75,35 +75,35 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 Research/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 Research/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Thomas/Documents/Research/Position\ Heap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/Thomas/Documents/Research/childtable.cpp">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/childtable.cpp">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/childtable.h">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/childtable.h">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/heap.cpp">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/heap.cpp">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/heap.h">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/heap.h">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/main.cpp">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/main.cpp">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/node.cpp">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/node.cpp">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/node.h">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/node.h">
 			<Option target="Research"/>
 		</Unit>
-		<Unit filename="/Users/Thomas/Documents/Research/CMakeLists.txt">
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

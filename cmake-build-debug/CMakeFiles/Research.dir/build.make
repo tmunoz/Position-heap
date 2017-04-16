@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/Thomas/Documents/Research
+CMAKE_SOURCE_DIR = "/Users/Thomas/Documents/Research/Position Heap"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/Thomas/Documents/Research/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Research.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/Research.dir/flags.make
 
 CMakeFiles/Research.dir/childtable.cpp.o: CMakeFiles/Research.dir/flags.make
 CMakeFiles/Research.dir/childtable.cpp.o: ../childtable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Research.dir/childtable.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/childtable.cpp.o -c /Users/Thomas/Documents/Research/childtable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Research.dir/childtable.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/childtable.cpp.o -c "/Users/Thomas/Documents/Research/Position Heap/childtable.cpp"
 
 CMakeFiles/Research.dir/childtable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Research.dir/childtable.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Thomas/Documents/Research/childtable.cpp > CMakeFiles/Research.dir/childtable.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Thomas/Documents/Research/Position Heap/childtable.cpp" > CMakeFiles/Research.dir/childtable.cpp.i
 
 CMakeFiles/Research.dir/childtable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Research.dir/childtable.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Thomas/Documents/Research/childtable.cpp -o CMakeFiles/Research.dir/childtable.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Thomas/Documents/Research/Position Heap/childtable.cpp" -o CMakeFiles/Research.dir/childtable.cpp.s
 
 CMakeFiles/Research.dir/childtable.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/Research.dir/childtable.cpp.o.provides.build: CMakeFiles/Research.dir
 
 CMakeFiles/Research.dir/heap.cpp.o: CMakeFiles/Research.dir/flags.make
 CMakeFiles/Research.dir/heap.cpp.o: ../heap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Research.dir/heap.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/heap.cpp.o -c /Users/Thomas/Documents/Research/heap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Research.dir/heap.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/heap.cpp.o -c "/Users/Thomas/Documents/Research/Position Heap/heap.cpp"
 
 CMakeFiles/Research.dir/heap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Research.dir/heap.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Thomas/Documents/Research/heap.cpp > CMakeFiles/Research.dir/heap.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Thomas/Documents/Research/Position Heap/heap.cpp" > CMakeFiles/Research.dir/heap.cpp.i
 
 CMakeFiles/Research.dir/heap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Research.dir/heap.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Thomas/Documents/Research/heap.cpp -o CMakeFiles/Research.dir/heap.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Thomas/Documents/Research/Position Heap/heap.cpp" -o CMakeFiles/Research.dir/heap.cpp.s
 
 CMakeFiles/Research.dir/heap.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/Research.dir/heap.cpp.o.provides.build: CMakeFiles/Research.dir/heap.
 
 CMakeFiles/Research.dir/main.cpp.o: CMakeFiles/Research.dir/flags.make
 CMakeFiles/Research.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Research.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/main.cpp.o -c /Users/Thomas/Documents/Research/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Research.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/main.cpp.o -c "/Users/Thomas/Documents/Research/Position Heap/main.cpp"
 
 CMakeFiles/Research.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Research.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Thomas/Documents/Research/main.cpp > CMakeFiles/Research.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Thomas/Documents/Research/Position Heap/main.cpp" > CMakeFiles/Research.dir/main.cpp.i
 
 CMakeFiles/Research.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Research.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Thomas/Documents/Research/main.cpp -o CMakeFiles/Research.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Thomas/Documents/Research/Position Heap/main.cpp" -o CMakeFiles/Research.dir/main.cpp.s
 
 CMakeFiles/Research.dir/main.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/Research.dir/main.cpp.o.provides.build: CMakeFiles/Research.dir/main.
 
 CMakeFiles/Research.dir/node.cpp.o: CMakeFiles/Research.dir/flags.make
 CMakeFiles/Research.dir/node.cpp.o: ../node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Research.dir/node.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/node.cpp.o -c /Users/Thomas/Documents/Research/node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Research.dir/node.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Research.dir/node.cpp.o -c "/Users/Thomas/Documents/Research/Position Heap/node.cpp"
 
 CMakeFiles/Research.dir/node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Research.dir/node.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Thomas/Documents/Research/node.cpp > CMakeFiles/Research.dir/node.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Thomas/Documents/Research/Position Heap/node.cpp" > CMakeFiles/Research.dir/node.cpp.i
 
 CMakeFiles/Research.dir/node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Research.dir/node.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Thomas/Documents/Research/node.cpp -o CMakeFiles/Research.dir/node.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Thomas/Documents/Research/Position Heap/node.cpp" -o CMakeFiles/Research.dir/node.cpp.s
 
 CMakeFiles/Research.dir/node.cpp.o.requires:
 
@@ -169,7 +169,7 @@ Research: CMakeFiles/Research.dir/main.cpp.o
 Research: CMakeFiles/Research.dir/node.cpp.o
 Research: CMakeFiles/Research.dir/build.make
 Research: CMakeFiles/Research.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Research"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Research"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Research.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -189,6 +189,6 @@ CMakeFiles/Research.dir/clean:
 .PHONY : CMakeFiles/Research.dir/clean
 
 CMakeFiles/Research.dir/depend:
-	cd /Users/Thomas/Documents/Research/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/Thomas/Documents/Research /Users/Thomas/Documents/Research /Users/Thomas/Documents/Research/cmake-build-debug /Users/Thomas/Documents/Research/cmake-build-debug /Users/Thomas/Documents/Research/cmake-build-debug/CMakeFiles/Research.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/Thomas/Documents/Research/Position Heap" "/Users/Thomas/Documents/Research/Position Heap" "/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug" "/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug" "/Users/Thomas/Documents/Research/Position Heap/cmake-build-debug/CMakeFiles/Research.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Research.dir/depend
 
