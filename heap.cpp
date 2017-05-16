@@ -36,7 +36,7 @@ void heap::insert(int substr, int index) {
     if (root->child->isEmpty()) { // checks if root childtable is empty
         root->child->insert(substr, index);
     }
-    else if (temp->child->search(text[substr][index-1], text) == nullptr) { // checks if root childtable has the char text[subst][index-1]
+    else if (temp->child->search(text[substr][index-1], text) == nullptr) { // checks if root's childtable has the char text[substr][index-1]
         temp->child->insert(substr, index); // executes childtable search
     }
     else {
@@ -49,6 +49,10 @@ void heap::insert(int substr, int index) {
         }
         temp->child->insert(substr, index);
     }
+}
+
+void heap::delete_str(int substr){
+
 }
 
 void heap::print(node* root) {

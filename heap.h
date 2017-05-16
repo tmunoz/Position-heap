@@ -13,6 +13,7 @@ public:
     heap(string* txt, int nOStr);
     void build();
     void insert(int substr, int index);
+    void delete_str(int substr);
     void print(node* root);
     node* getRoot();
 };
