@@ -14,5 +14,6 @@ int main(){
     heap *h;
     h = new heap(a,n);
     h->build();
-    h->print(h->getRoot());
+    h->GraphTree();
+
 }
