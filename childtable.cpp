@@ -1,9 +1,10 @@
 #include <vector>
 #include <iostream>
+#include <utility>
 #include "childtable.h"
 #include "node.h"
 
-int childtable::size() {
+unsigned long childtable::size() {
     return table.size();
 }
 
@@ -24,8 +25,22 @@ void childtable::insert(int strIndex, int inner_index){
     table.push_back(new_child);
 }
 
-node* childtable::search(char t, string* text, int h) {
-    for(int i=0; i < table.size(); i++) {
+// Asuming that in the future childtable will be an AVL tree or some other ordered data structure
+// that supports logarithmic search
+int childtable::search(int str) {
+    unsigned long size = table.size();
+
+    for(int i=0; i < size; i++){
+        if(table[i]->getStr() == str){
+            return i;
+        }
+    }
+    return -1;
+}
+
+node* childtable::searchLetter(char t, string* text, int h) {
+    unsigned long size = table.size();
+    for(int i=0; i < size; i++) {
         if(text[table[i]->getStr()][table[i]->getIndex()+h-1] == t)
             return table[i];
     }

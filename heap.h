@@ -15,6 +15,7 @@ public:
     void insert(int substr, int index);
     void delete_str(int substr);
     void print(node* root);
+    std::pair<node*,int> searchStr(node* root, int str);
     void GraphTree();
     void GraphTreeRecurse(node* root, ostream &out, int h = 0);
     node* getRoot();

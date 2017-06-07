@@ -11,6 +11,8 @@ vector
 -
 iostream
 -
+utility
+-
 childtable.h
 /Users/Thomas/Documents/Research/Position Heap/childtable.h
 node.h
@@ -28,6 +30,8 @@ iostream
 fstream
 -
 vector
+-
+utility
 -
 heap.h
 /Users/Thomas/Documents/Research/Position Heap/heap.h

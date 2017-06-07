@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <utility>
 #include "heap.h"
 #include "node.h"
 #include "childtable.h"
@@ -36,14 +37,14 @@ void heap::insert(int substr, int index) {
     node *temp = root;
     if (root->child->isEmpty()) { // checks if root childtable is empty
         root->child->insert(substr, index);
-    } else if (temp->child->search(text[substr][index - 1], text) ==
+    } else if (temp->child->searchLetter(text[substr][index - 1], text) ==
                nullptr) { // checks if root's childtable has the char text[substr][index-1]
         temp->child->insert(substr, index); // executes childtable search
     } else {
-        temp = temp->child->search(text[substr][index - 1], text); // not sending h, because h = 0
+        temp = temp->child->searchLetter(text[substr][index - 1], text); // not sending h, because h = 0
         int new_index = index + 1; // is declared here for better understanding
-        while (temp->child->search(text[substr][new_index - 1], text, new_index - index) != nullptr) {
-            temp = temp->child->search(text[substr][new_index - 1], text, new_index - index);
+        while (temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index) != nullptr) {
+            temp = temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index);
             new_index++;
             if (new_index > text[substr].size()) return;
         }
@@ -51,7 +52,49 @@ void heap::insert(int substr, int index) {
     }
 }
 
-void heap::delete_str(int substr){
+// Returns the node's parent and his position on the table
+std::pair<node*, int> heap::searchStr(node* root, int str) {
+    if (root->child->isEmpty()) return make_pair(nullptr,0);
+
+    int found = root->child->search(str);
+    if (found >= 0) return std::make_pair(root, found);
+
+    for (int i = 0; i < root->child->size(); i++) {
+        return heap::searchStr(root->child->table[i], str);
+    }
+}
+
+void heap::delete_str(int substr) {
+    std::pair<node *, int> parent = heap::searchStr(root, substr);
+    while (parent.first) {
+        node *nodeToDelete = parent.first->child->table[parent.second];
+        if (nodeToDelete->child->isEmpty()) {
+            parent.first->child->table.erase(parent.first->child->table.begin() + parent.second);
+            delete nodeToDelete;
+            return;
+        } else {
+            node *aux = nodeToDelete;
+            node *childToPromote = new node(0, 0);
+            int posOfPromotingChild = 0, i = 0;
+            for (auto &elem : aux->child->table) {
+                if (elem->getStr() < childToPromote->getStr()) {
+                    childToPromote = elem;
+                    posOfPromotingChild = i;
+                } else if (elem->getStr() == childToPromote->getStr() &&
+                           elem->getIndex() < childToPromote->getIndex()) {
+                    childToPromote = elem;
+                    posOfPromotingChild = i;
+                }
+                ++i;
+            }
+            aux->child->table.erase(aux->child->table.begin() + posOfPromotingChild);
+            childToPromote->child->table.insert(childToPromote->child->table.end(),
+                                                aux->child->table.begin(), aux->child->table.end());
+            aux = nullptr;
+            delete nodeToDelete;
+        }
+        parent = heap::searchStr(root, substr);
+    }
 
 }
 

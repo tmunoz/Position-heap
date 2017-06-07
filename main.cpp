@@ -7,6 +7,7 @@ int main(){
     string* a;
     int n=4;
     a = new string[n];
+    //alabaralaalabadaalabarda
     a[0]="abaa";
     a[1]="babb";
     a[2]="abba";
@@ -14,6 +15,7 @@ int main(){
     heap *h;
     h = new heap(a,n);
     h->build();
+    h->print(h->getRoot());
     h->GraphTree();
 
 }
