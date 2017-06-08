@@ -65,16 +65,16 @@ std::pair<node*, int> heap::searchStr(node* root, int str) {
 }
 
 void heap::delete_str(int substr) {
-    std::pair<node *, int> parent = heap::searchStr(root, substr);
+    std::pair<node *, int> parent = heap::searchStr(root, substr-1); //substr-1 because strings are stored from 0 to n
     while (parent.first) {
         node *nodeToDelete = parent.first->child->table[parent.second];
         if (nodeToDelete->child->isEmpty()) {
             parent.first->child->table.erase(parent.first->child->table.begin() + parent.second);
             delete nodeToDelete;
-            return;
+
         } else {
             node *aux = nodeToDelete;
-            node *childToPromote = new node(0, 0);
+            node *childToPromote = new node(999,999); // TODO: set as the first element on aux->child->table
             int posOfPromotingChild = 0, i = 0;
             for (auto &elem : aux->child->table) {
                 if (elem->getStr() < childToPromote->getStr()) {
@@ -90,12 +90,22 @@ void heap::delete_str(int substr) {
             aux->child->table.erase(aux->child->table.begin() + posOfPromotingChild);
             childToPromote->child->table.insert(childToPromote->child->table.end(),
                                                 aux->child->table.begin(), aux->child->table.end());
-            aux = nullptr;
+            parent.first->child->table[parent.second]=childToPromote;
             delete nodeToDelete;
         }
-        parent = heap::searchStr(root, substr);
+        parent = heap::searchStr(root, substr-1);
     }
 
+    string* new_text = new string[numberOfStrings];
+    for(int i=0; i < numberOfStrings+1; i++) {
+        if (i == substr - 1) text[i]="";
+        else new_text[i] = text[i];
+    }
+
+    text=new string[numberOfStrings];
+    for(int i=0; i < numberOfStrings; i++) {
+        text[i]=new_text[i];
+    }
 }
 
 void heap::print(node* root) {
