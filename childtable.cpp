@@ -40,8 +40,8 @@ int childtable::search(int str) {
 
 node* childtable::searchLetter(char t, string* text, int h) {
     unsigned long size = table.size();
-    for(int i=0; i < size; i++) {
-        if(text[table[i]->getStr()][table[i]->getIndex()+h-1] == t)
+    for (int i = 0; i < size; i++) {
+        if (text[table[i]->getStr()][table[i]->getIndex() + h - 1] == t)
             return table[i];
     }
     return nullptr;

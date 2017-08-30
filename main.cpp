@@ -17,9 +17,11 @@ int main(){
     h->build();
     h->print(h->getRoot());
     h->GraphTree();
+    /*
     std::cout<<"\n";
     h->delete_str(1);
     h->print(h->getRoot());
     h->GraphTree();
+     */
     delete h;
 }

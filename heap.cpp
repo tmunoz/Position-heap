@@ -6,7 +6,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <utility>
 #include "heap.h"
 #include "node.h"
 #include "childtable.h"
@@ -21,28 +20,53 @@ heap::heap(string* txt, int nOStr){
 }
 
 /*********************************************************/
-//
+// TODO: Add time bounds of everything
 // Goes through the text calling insert for each character
 //
 /*********************************************************/
 void heap::build() {
-    for (int i = 0; i < numberOfStrings; i++) { // i = string index & j = index
+    for (int i = 0; i < numberOfStrings; i++) { // i = string & j = index
         for (int j = 0; j < text[i].size() - 1; j++) {
             insert(i, j + 1);
         }
     }
 }
 
+void heap::setMaxReaches(node* actualNode){
+    for (int i = 0; i < numberOfStrings; i++) { // i = string & j = index
+        for (int j = 0; j < text[i].size() - 1; j++) {
+            mrpAuxiliar(i, j);
+        }
+    }
+}
+
+void heap::mrpAuxiliar(int str, int index) { // estan como str, index+1
+    node *temp = root, nodeToSet = nullptr;
+    int h = 0;
+    if (root->child->isEmpty()) return;
+
+    while (temp->child->searchLetter(text[str][index + h], text, h) != nullptr) { // TODO: Optimize the going down the tree, maybe recurse is a solution
+        temp = temp->child->searchLetter(text[str][index + h], text, h);
+        h++;
+        if (index + h > text[str].size());
+
+        maxReach[std::pair<int, int>(str, index + 1)] = temp;
+    }
+}
+
+// TODO: bla bla bla about insert...
+// About Maximal-Reach pointers (MRPs), because our structure is dynamic we have to
+// update the MRPs every time that a new string is inserted.
 void heap::insert(int substr, int index) {
     node *temp = root;
     if (root->child->isEmpty()) { // checks if root childtable is empty
         root->child->insert(substr, index);
-    } else if (temp->child->searchLetter(text[substr][index - 1], text) ==
-               nullptr) { // checks if root's childtable has the char text[substr][index-1]
+    } else if (temp->child->searchLetter(text[substr][index - 1], text)
+        == nullptr) { // checks if root's childtable has the char text[substr][index-1]
         temp->child->insert(substr, index); // executes childtable search
     } else {
         temp = temp->child->searchLetter(text[substr][index - 1], text); // not sending h, because h = 0
-        int new_index = index + 1; // is declared here for better understanding
+        int new_index = index + 1; // is declared here for better understanding // h+=1
         while (temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index) != nullptr) {
             temp = temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index);
             new_index++;
@@ -53,8 +77,8 @@ void heap::insert(int substr, int index) {
 }
 
 // Returns the node's parent and his position on the table
-std::pair<node*, int> heap::searchStr(node* root, int str) {
-    if (root->child->isEmpty()) return make_pair(nullptr,0);
+std::pair<node*, int> heap::searchStr(node* root, int str) { // TODO: rename to Search Parent
+    if (root->child->isEmpty()) return pair<node*, int> (nullptr, 0);
 
     int found = root->child->search(str);
     if (found >= 0) return std::make_pair(root, found);
@@ -74,7 +98,7 @@ void heap::delete_str(int substr) {
 
         } else {
             node *aux = nodeToDelete;
-            node *childToPromote = new node(999,999); // TODO: set as the first element on aux->child->table
+            auto *childToPromote = new node(999,999); // TODO: set as the first element on aux->child->table
             int posOfPromotingChild = 0, i = 0;
             for (auto &elem : aux->child->table) {
                 if (elem->getStr() < childToPromote->getStr()) {
@@ -96,7 +120,7 @@ void heap::delete_str(int substr) {
         parent = heap::searchStr(root, substr-1);
     }
 
-    string* new_text = new string[numberOfStrings];
+    string* new_text = new string[numberOfStrings]; //TODO: erase the string that I'm deleting instead of leaving it there
     for(int i=0; i < numberOfStrings+1; i++) {
         if (i == substr - 1) text[i]="";
         else new_text[i] = text[i];
@@ -130,10 +154,11 @@ void heap::GraphTreeRecurse(node* root, ostream &out, int h) {
     if (root->child->isEmpty()) return;
 
     for (int i = 0; i < root->child->size(); i++) {
-        int parent_str;
-        int parent_index;
         int child_str = root->child->table[i]->getStr();
         int child_index = root->child->table[i]->getIndex();
+        int parent_index;
+        int parent_str;
+
 
         if (root == heap::root){
             parent_str=0;

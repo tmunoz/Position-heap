@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -31,8 +31,6 @@ fstream
 -
 vector
 -
-utility
--
 heap.h
 /Users/Thomas/Documents/Research/Position Heap/heap.h
 node.h
@@ -42,6 +40,10 @@ childtable.h
 
 /Users/Thomas/Documents/Research/Position Heap/heap.h
 vector
+-
+utility
+-
+unordered_map
 -
 
 /Users/Thomas/Documents/Research/Position Heap/main.cpp
