@@ -33,7 +33,7 @@ int main(){
     for(int i=m ; i < textLength ; i++){
         s2.push_back(s[i]);
         m_counter.count += 1;
-        if(m_counter.count == 2*m || i == textLength-1){ //ARREGLAR, ES REDUNDANTE CON #17
+        if(m_counter.count == 2*m || i == textLength-1){
             s2.push_back('$');
             m_counter.count = 0;
         }
