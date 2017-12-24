@@ -12,6 +12,6 @@ public:
     bool isEmpty();
     void print_table();
     void insert(int strIndex, int inner_index);
-    node* searchLetter(char t, string* text, int h=0);
+    node* searchLetter(char t, vector<string> text, int h=0);
     int search(int str);
 };

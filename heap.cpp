@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <algorithm>
 #include <queue>
 #include "heap.h"
@@ -14,11 +15,17 @@
 
 heap::heap(string* txt, int nOStr){
     root = new node(0,0);
-    text = new string[nOStr];
+    //text = new string[nOStr];
     for(int i=0; i < nOStr; i++){
-        text[i]=txt[i];
+        text.push_back(txt[i]);
     }
     numberOfStrings = nOStr;
+}
+
+heap::heap(){
+    text.clear();
+    root = new node(0,0);
+    numberOfStrings = 0;
 }
 
 /*********************************************************/
@@ -42,6 +49,7 @@ void heap::build() {
 //
 void heap::setMaxReaches() {
     for (int i = 0; i < numberOfStrings; i++) { // i = string & j = index
+        if (text[i] == "") continue;
         for (int j = 0; j < text[i].size() - 1; j++) {
             mrpAuxiliar(i, j);
         }
@@ -107,6 +115,26 @@ void heap::insert(int substr, int index) {
     }
 }
 
+void heap::insert_str(string str) {
+    long long int str_index;
+    if (fstack.isCollectionEmpty()) {
+        str_index = fstack.get_index();
+        str = str + "$" + to_string(str_index);
+        text.push_back(str);
+    } else {
+        str_index = fstack.get_index();
+        str = str + "$" + to_string(str_index);
+        text[str_index] = str;
+    }
+    cout<<str<<" "<<str_index<<endl;
+    for (int i = 0; i < str.size() - 1; i++) {
+        if (text[str_index][i] == '$') break;
+        insert(str_index, i + 1);
+    }
+
+    setMaxReaches();
+}
+
 // Returns the node's parent and his position on the table
 std::pair<node*, int> heap::searchStr(node* root, int str) { // TODO: rename to Search Parent
     if (root->child->isEmpty()) return {nullptr, 0};
@@ -151,16 +179,25 @@ void heap::delete_str(int substr) {
         parent = heap::searchStr(root, substr - 1);
     }
 
-    auto *new_text = new string[numberOfStrings]; // TODO: erase the string that I'm deleting instead of leaving it there
+    //text.erase(text.begin() + substr - 1);
+    //numberOfStrings--;
+    text[substr - 1] = "";
+    fstack.add_deleted(substr-1);
+
+    /*
+    auto *new_text = new string[numberOfStrings];
     for (int i = 0; i < numberOfStrings + 1; i++) {
         if (i == substr - 1) text[i] = "";
         else new_text[i] = text[i];
     }
 
-    text = new string[numberOfStrings];
+    text.clear();
     for (int i = 0; i < numberOfStrings; i++) {
-        text[i] = new_text[i];
+        text.push_back(new_text[i]);
     }
+    */
+    setMaxReaches();
+
 }
 
 // \brief: Search for a pattern in the heap, returns a vector with the nodes (str, index) denoting the position
@@ -288,12 +325,12 @@ void heap::GraphTreeRecurse(node* root, ostream &out, int h) {
             parent_str = 0;
             parent_index = 0;
         } else {
-            parent_str = root->getStr() + 1;
+            parent_str = root->getStr();
             parent_index = root->getIndex();
         }
         // Writing on tree.txt
         out << "\"" << parent_str << ", " << parent_index << "\" -> \""
-            << child_str + 1 << ", " << child_index << "\" [label = \" "
+            << child_str << ", " << child_index << "\" [label = \" "
             << text[child_str][child_index - 1 + h] << "\"]\n";
     }
 
@@ -307,6 +344,6 @@ node* heap::getRoot() {
     return root;
 }
 
-string* heap::getText() {
+vector<string> heap::getText() {
     return text;
 }

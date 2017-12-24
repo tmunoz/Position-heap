@@ -88,6 +88,9 @@
 		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/childtable.h">
 			<Option target="Research"/>
 		</Unit>
+		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/fast_stack.hpp">
+			<Option target="Research"/>
+		</Unit>
 		<Unit filename="/Users/Thomas/Documents/Research/Position Heap/heap.cpp">
 			<Option target="Research"/>
 		</Unit>

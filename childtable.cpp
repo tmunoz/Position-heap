@@ -16,7 +16,7 @@ childtable::childtable(){}
 
 void childtable::print_table() {
     for(int i=0;i < table.size();i++){
-        cout<<"("<<table[i]->getStr()+1<<", "<<table[i]->getIndex()<<") ";
+        cout<<"("<<table[i]->getStr()<<", "<<table[i]->getIndex()<<") ";
     }
 }
 
@@ -52,7 +52,7 @@ int childtable::search(int str) {
 // \return_value: A pointer to the node.
 //
 // \complexity: linear in the size of childtable.
-node* childtable::searchLetter(char t, string* text, int h) {
+node* childtable::searchLetter(char t, vector<string> text, int h) {
     auto size = table.size();
     if(isEmpty()) return nullptr;
 

@@ -10,6 +10,6 @@ set(SOURCE_FILES
         heap.h
         main.cpp
         node.cpp
-        node.h)
+        node.h fast_stack.hpp)
 
-add_executable(Research ${SOURCE_FILES})
+add_executable(Research ${SOURCE_FILES} fast_stack.hpp)

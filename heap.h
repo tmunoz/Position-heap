@@ -1,6 +1,7 @@
 #include <vector>
 #include <utility>
 #include <unordered_map>
+#include "fast_stack.hpp"
 
 class node;
 class childtable;
@@ -47,13 +48,18 @@ class heap {
     // and has average constant time complexity
     int numberOfStrings;
     node *root;
-    string *text;
+    vector<string> text;
+    Fast_stack fstack;
 public:
     heap(string *txt, int nOStr);
+
+    heap();
 
     void build();
 
     void insert(int substr, int index);
+
+    void insert_str(string str);
 
     void delete_str(int substr);
 
@@ -73,5 +79,5 @@ public:
 
     node *getRoot();
 
-    string *getText();
+    vector<string> getText();
 };

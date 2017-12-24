@@ -22,6 +22,10 @@ node.h
 vector
 -
 
+/Users/Thomas/Documents/Research/Position Heap/fast_stack.hpp
+stack
+-
+
 /Users/Thomas/Documents/Research/Position Heap/heap.cpp
 cstdio
 -
@@ -30,6 +34,8 @@ iostream
 fstream
 -
 vector
+-
+string
 -
 algorithm
 -
@@ -49,6 +55,8 @@ utility
 -
 unordered_map
 -
+fast_stack.hpp
+/Users/Thomas/Documents/Research/Position Heap/fast_stack.hpp
 
 /Users/Thomas/Documents/Research/Position Heap/main.cpp
 iostream
@@ -59,8 +67,6 @@ node.h
 /Users/Thomas/Documents/Research/Position Heap/node.h
 childtable.h
 /Users/Thomas/Documents/Research/Position Heap/childtable.h
-unordered_map
--
 
 /Users/Thomas/Documents/Research/Position Heap/node.cpp
 node.h
