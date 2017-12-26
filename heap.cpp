@@ -42,13 +42,13 @@ void heap::build() {
     setMaxReaches();
 }
 
-// \brief: Set the maximal-reach pointer of every node in the heap.
+// \brief: Set a maximal-reach pointer for every node in the heap.
 //
 // \complexity: O(n*m*[h*k]) where n is the number of strings in the text and m is the size of the strings.
 //  h and k are explained in mrpAuxiliar
 //
 void heap::setMaxReaches() {
-    for (int i = 0; i < numberOfStrings; i++) { // i = string & j = index
+    for (int i = 0; i < text.size(); i++) { // i = string & j = index
         if (text[i] == "") continue;
         for (int j = 0; j < text[i].size() - 1; j++) {
             mrpAuxiliar(i, j);
@@ -126,7 +126,7 @@ void heap::insert_str(string str) {
         str = str + "$" + to_string(str_index);
         text[str_index] = str;
     }
-    cout<<str<<" "<<str_index<<endl;
+
     for (int i = 0; i < str.size() - 1; i++) {
         if (text[str_index][i] == '$') break;
         insert(str_index, i + 1);
@@ -307,6 +307,9 @@ void heap::GraphTree() {
     std::ofstream out("tree.txt");
     out << "digraph G{\n";
     GraphTreeRecurse(root, out);
+    for(auto &elem : maxReach){
+        out<<"\""<<elem.first.first<<", "<<elem.first.second<<"\" -> \""<<elem.second->getStr()<<", "<<elem.second->getIndex()<<"\" [color = \"0.002 0.999 0.999\"]\n";
+    }
     out << "}";
     out.close();
 }
