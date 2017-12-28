@@ -16,7 +16,7 @@ childtable::childtable(){}
 
 void childtable::print_table() {
     for(int i=0;i < table.size();i++){
-        cout<<"("<<table[i]->getStr()<<", "<<table[i]->getIndex()<<") ";
+        cout<<"("<<table[i]->getStr()+1<<", "<<table[i]->getIndex()<<") ";
     }
 }
 

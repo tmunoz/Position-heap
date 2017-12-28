@@ -47,7 +47,11 @@ void heap::build() {
 // \complexity: O(n*m*[h*k]) where n is the number of strings in the text and m is the size of the strings.
 //  h and k are explained in mrpAuxiliar
 //
+// \about: Maximal-Reach pointers (MRPs) as our structure is dynamic we have to
+// update the MRPs every time that a new string is inserted.
+//
 void heap::setMaxReaches() {
+    maxReach.clear();
     for (int i = 0; i < text.size(); i++) { // i = string & j = index
         if (text[i] == "") continue;
         for (int j = 0; j < text[i].size() - 1; j++) {
@@ -83,13 +87,8 @@ void heap::mrpAuxiliar(int str, int index) { // estan como str, index+1
     }
     if (!node_reached) return;
     maxReach[make_pair(str, index + 1)] = temp;
-    //maxReach.at(make_pair(str,index+1))=temp;
-    //maxReach.insert(make_pair(make_pair(str, index+1), temp));
 }
 
-// About Maximal-Reach pointers (MRPs): because our structure is dynamic we have to
-// update the MRPs every time that a new string is inserted.
-//
 // \brief: Insert a new node(string, index) in the heap. Follow text[string] until it hits a leaf or
 //  label text[string][index+h] is not in the childtable of a node.
 //
@@ -117,6 +116,7 @@ void heap::insert(int substr, int index) {
 
 void heap::insert_str(string str) {
     long long int str_index;
+    numberOfStrings++;
     if (fstack.isCollectionEmpty()) {
         str_index = fstack.get_index();
         str = str + "$" + to_string(str_index);
@@ -179,23 +179,10 @@ void heap::delete_str(int substr) {
         parent = heap::searchStr(root, substr - 1);
     }
 
-    //text.erase(text.begin() + substr - 1);
-    //numberOfStrings--;
     text[substr - 1] = "";
     fstack.add_deleted(substr-1);
 
-    /*
-    auto *new_text = new string[numberOfStrings];
-    for (int i = 0; i < numberOfStrings + 1; i++) {
-        if (i == substr - 1) text[i] = "";
-        else new_text[i] = text[i];
-    }
 
-    text.clear();
-    for (int i = 0; i < numberOfStrings; i++) {
-        text.push_back(new_text[i]);
-    }
-    */
     setMaxReaches();
 
 }
@@ -307,8 +294,10 @@ void heap::GraphTree() {
     std::ofstream out("tree.txt");
     out << "digraph G{\n";
     GraphTreeRecurse(root, out);
-    for(auto &elem : maxReach){
-        out<<"\""<<elem.first.first<<", "<<elem.first.second<<"\" -> \""<<elem.second->getStr()<<", "<<elem.second->getIndex()<<"\" [color = \"0.002 0.999 0.999\"]\n";
+    for (auto &elem : maxReach) {
+        out << "\"" << elem.first.first + 1 << ", " << elem.first.second << "\" -> \""
+            << elem.second->getStr() + 1 << ", " << elem.second->getIndex()
+            << "\" [color = \"0.002 0.999 0.999\"]\n";
     }
     out << "}";
     out.close();
@@ -325,15 +314,15 @@ void heap::GraphTreeRecurse(node* root, ostream &out, int h) {
 
 
         if (root == heap::root) {
-            parent_str = 0;
+            parent_str = -1;
             parent_index = 0;
         } else {
             parent_str = root->getStr();
             parent_index = root->getIndex();
         }
         // Writing on tree.txt
-        out << "\"" << parent_str << ", " << parent_index << "\" -> \""
-            << child_str << ", " << child_index << "\" [label = \" "
+        out << "\"" << parent_str + 1 << ", " << parent_index << "\" -> \""
+            << child_str + 1 << ", " << child_index << "\" [label = \" "
             << text[child_str][child_index - 1 + h] << "\"]\n";
     }
 

@@ -24,11 +24,14 @@ int main(){
     auto res = h->search("bb");
     cout<<endl;
     for(auto &elem : res) cout<<elem->getStr()+1<<", "<<elem->getIndex()<<endl;
-/*
+
     std::cout<<"\n";
     h->delete_str(1);
     h->print(h->getRoot());
     h->GraphTree();
-*/
+    cout<<"\n";
+    h->insert_str(a[1]);
+    h->print(h->getRoot());
+    h->GraphTree();
     delete h;
 }
