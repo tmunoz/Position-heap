@@ -8,28 +8,7 @@ class childtable;
 
 using namespace std;
 
-// These lines (11-30) allow using a pair as a key for unordered_map. Must check the hash function bounds
-//template <class T>
-//inline void hash_combine(std::size_t & seed, const T & v)
-//{
-//    std::hash<T> hasher;
-//    seed ^= hasher(v) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-//}
-//
-//namespace std
-//{
-//    template<typename S, typename T> struct hash<pair<S, T> >
-//    {
-//        inline size_t operator()(const pair<S, T> & v) const
-//        {
-//            size_t seed = 0;
-//            ::hash_combine(seed, v.first);
-//            ::hash_combine(seed, v.second);
-//            return seed;
-//        }
-//    };
-//}
-//
+// These lines (12-22) allow using a pair as a key for unordered_map. Must check the hash function bounds
 struct pair_hash {
     template <class T1, class T2>
     std::size_t operator () (const std::pair<T1,T2> &p) const {
@@ -51,11 +30,8 @@ class heap {
     vector<string> text;
     Fast_stack fstack;
 public:
-    heap(string *txt, int nOStr);
 
     heap();
-
-    void build();
 
     void insert(int substr, int index);
 

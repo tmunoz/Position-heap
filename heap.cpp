@@ -1,26 +1,17 @@
 /**************************************************/
+// Dynamic Position Heap by Thomas Muñoz, thomas.munoz@mail.udp.cl
 // Based on Ross McConell position-heap implementation
 // http://www.cs.colostate.edu/PositionHeaps/
 /**************************************************/
 #include <cstdio>
+#include <climits>
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <string>
-#include <algorithm>
 #include <queue>
 #include "heap.h"
 #include "node.h"
 #include "childtable.h"
-
-heap::heap(string* txt, int nOStr){
-    root = new node(0,0);
-    //text = new string[nOStr];
-    for(int i=0; i < nOStr; i++){
-        text.push_back(txt[i]);
-    }
-    numberOfStrings = nOStr;
-}
 
 heap::heap(){
     text.clear();
@@ -33,14 +24,6 @@ heap::heap(){
 // Goes through the text calling insert for each character
 //
 /*********************************************************/
-void heap::build() {
-    for (int i = 0; i < numberOfStrings; i++) { // i = string & j = index
-        for (int j = 0; j < text[i].size() - 1; j++) {
-            insert(i, j + 1);
-        }
-    }
-    setMaxReaches();
-}
 
 // \brief: Set a maximal-reach pointer for every node in the heap.
 //
@@ -136,7 +119,7 @@ void heap::insert_str(string str) {
 }
 
 // Returns the node's parent and his position on the table
-std::pair<node*, int> heap::searchStr(node* root, int str) { // TODO: rename to Search Parent
+std::pair<node*, int> heap::searchStr(node* root, int str) {
     if (root->child->isEmpty()) return {nullptr, 0};
 
     int found = root->child->search(str);
@@ -157,7 +140,7 @@ void heap::delete_str(int substr) {
 
         } else {
             node *aux = nodeToDelete;
-            auto *childToPromote = new node(999, 999); // TODO: set as the first element on aux->child->table
+            auto *childToPromote = new node(INT_MAX, INT_MAX);
             int posOfPromotingChild = 0, i = 0;
             for (auto &elem : aux->child->table) {
                 if (elem->getStr() < childToPromote->getStr()) {
@@ -202,7 +185,7 @@ vector<node*> heap::search(string pattern) {
         path.push_back(temp);
         h++;
     }
-    if (pattern.size() == h) { // revisar si en path hay algun mrp hacia el subarbol de temp
+    if (pattern.size() == h) {
         queue<node *> q;
         unordered_map<node *, node *> subtreeKeys;
         q.push(temp);
@@ -232,6 +215,7 @@ vector<node*> heap::search(string pattern) {
             if (maxReach.at(make_pair(elem->getStr(), elem->getIndex())) == temp)
                 auxSol.push_back(elem);
         }
+
         int h2 = 0;
         temp = root;
         path.clear();
@@ -240,7 +224,8 @@ vector<node*> heap::search(string pattern) {
             path.push_back(temp);
             h2++;
         }
-        if (h2 == pattern.size() - h) { // pattern.size()-h-1 maybe
+
+        if (h2 == pattern.size() - h) {
             queue<node *> q;
             unordered_map<node *, node *> subtreeKeys;
             q.push(temp);
@@ -254,27 +239,18 @@ vector<node*> heap::search(string pattern) {
             }
 
             for (auto &elem : auxSol) { // if they are in the same string... Searching for the nodes in auxSol (list) who have their mrp pointing to the subtree of v'
-                if (subtreeKeys.find(maxReach[make_pair(elem->getStr(), elem->getIndex() + h)]) !=
-                    subtreeKeys.end()) {
-                    sol.push_back(elem);
-                }
-            }
-
-            for (auto &elem : auxSol) { // if getindex()+h is on the path from root to v' with a mrp into the subtree of v'
                 auto p = new node(elem->getStr(), elem->getIndex() + h);
-                if (find(path.begin(), path.end(), p) != path.end()) {
-                    if (subtreeKeys.find(maxReach[make_pair(elem->getStr(), elem->getIndex() + h)]) !=
-                        subtreeKeys.end()) {
-                        sol.push_back(elem);
-                    }
+                if (subtreeKeys.find(maxReach[make_pair(elem->getStr(), elem->getIndex() + h)]) !=
+                    subtreeKeys.end() || find(path.begin(), path.end(), p) != path.end()) { //if getindex()+h is on the path from root to v' with a mrp into the subtree of v'
+                    sol.push_back(elem);
                 }
             }
 
             return sol;
         }
+
         if (h2 + h != pattern.size()) h = h2;
         else {
-            cout << "Not Found !" << endl;
             return {nullptr};
         }
     }
