@@ -172,16 +172,17 @@ void heap::delete_str(int substr) {
 
 // \brief: Search for a pattern in the heap, returns a vector with the nodes (str, index) denoting the position
 //      of every ocurrence of the pattern on the text.
+//  p = length of the pattern
+//  k = number of different letters on the text (could be reduced using a map because it'll improve searchLetter function)
+//  h = number of nodes on the path from the root to the deepest node reachable on the heap following the pattern
 //
-// \complexity: k*
 // TODO: get the complexity
 //
 vector<node*> heap::search(string pattern) {
     node *temp = root;
     std::vector<node *> path, sol;
     int h = 0;
-    while (pattern.size() > h && temp->child->searchLetter(pattern[h], text, h) != nullptr) {
-        temp = temp->child->searchLetter(pattern[h], text, h);
+    while (pattern.size() > h && (temp = temp->child->searchLetter(pattern[h], text, h)) != nullptr) {
         path.push_back(temp);
         h++;
     }
@@ -219,8 +220,7 @@ vector<node*> heap::search(string pattern) {
         int h2 = 0;
         temp = root;
         path.clear();
-        while ((pattern.size() > h + h2) && temp->child->searchLetter(pattern[h + h2], text, h2) != nullptr) {
-            temp = temp->child->searchLetter(pattern[h + h2], text, h2);
+        while ((pattern.size() > h + h2) && (temp = temp->child->searchLetter(pattern[h + h2], text, h2)) != nullptr) {
             path.push_back(temp);
             h2++;
         }
