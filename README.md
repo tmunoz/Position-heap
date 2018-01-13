@@ -9,7 +9,7 @@ based on Ross McConell's: http://www.cs.colostate.edu/PositionHeaps/
 How to Use
 -----------
 Execute the main file and you'll get a menu asking to choose one of the following options:
-```
+``
          0. Quit
          1. Insert String
          2. Delete String
@@ -39,7 +39,7 @@ Example
   <img src="https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex2.png">
 </p>
 
-* What if we want to search for the pattern `ba`, we must choose option `3 and type `ba` we will see the following list:
+* What if we want to search for the pattern `ba`, we must choose option `3` and type `ba` we will see the following list:
 ```The strings in the heap are:
     1. abaa$1
     2. babb$2
