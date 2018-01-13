@@ -26,14 +26,19 @@ Execute the main file and you'll get a menu asking to choose one of the followin
 Example
 -------
 * If first we insert a string we must choose the option 1 and then type for example `abaa` will get the message: `Inserted with ID: 1` then if we Graph the Heap we'll get:
-![alt text](https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex1.png)
+
+<p align="center">
+  <img src="https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex1.png">
+</p>
 
 * Let's say that now we want to insert `babb` as you may notice will get the message: `Inserted with ID: 2` and if we Graph it:
-![alt text](https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex2.png)
 
-* What if we want to search for the pattern `ba`, we must choose option 3 and type `ba` we will see the following list:
-```
-The strings in the heap are:
+<p align="center">
+  <img src="https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex2.png">
+</p>
+
+* What if we want to search for the pattern `ba`, we must choose option `3 and type `ba` we will see the following list:
+```The strings in the heap are:
     1. abaa$1
     2. babb$2
 
@@ -41,11 +46,18 @@ The positions of the pattern are:
     2, 1
     1, 2
 ```
-If we look the strings on our structure based for example on the first of the positions found (2, 1) we go to the string 2: `babb` we can see that on the position 1 there is a letter `b` and the next letter is an `a` so the position 1 is where the pattern starts in the string 2.
 
-* Now if we want to delete a string, we must choose option 2 and then type the string ID for example `1`, this will delete the string `abaa` and if we Graph the resultant structure we will get:
-![alt text](https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex3.png)
+If we look the strings on our structure based for example on the first of the positions found `(2, 1)` and we now go to the string `2`: `babb` we can see that on the position `1` there is a letter `b` and the next letter is an `a` so the position `1` is where the pattern starts in the string `2`.
 
-* Notice that if we now insert a string we'll get the ID `1` instead of `3` because we deleted string `1 before so its ID is available. Let's insert the string `ab` and then search for the pattern `ab` giving the next graph:
-![alt text](https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex4.png)
+* Now if we want to delete a string, we must choose option `2` and then type the string ID for example `1`, this will delete the string `abaa` and if we Graph the resultant structure we will get:
+
+<p align="center">
+  <img src="https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex3.png">
+</p>
+
+* Notice that if we now insert a string we'll get the ID `1` instead of `3` because we deleted string `1` before so its ID is available. Let's insert the string `ab` and then search for the pattern `ab` giving the next graph:
+
+<p align="center">
+  <img src="https://github.com/tmunoz/Position-heap/blob/master/exampleIMG/ex4.png">
+</p>
 
