@@ -29,8 +29,7 @@ int main() {
                 string str_toInsert;
                 cout << "Enter the string: ";
                 cin >> str_toInsert;
-                h->insert_str(str_toInsert);
-                cout << "Inserted !\n";
+                cout << "Inserted with ID: "<<h->insert_str(str_toInsert)<<"\n";
             }
                 break;
 
@@ -70,6 +69,6 @@ int main() {
                 break;
         }
     }
-    delete h;
+    h->~heap();
     return 0;
 }

@@ -32,10 +32,11 @@ class heap {
 public:
 
     heap();
+    ~heap();
 
     void insert(int substr, int index);
 
-    void insert_str(string str);
+    long long int insert_str(string str);
 
     void delete_str(int substr);
 

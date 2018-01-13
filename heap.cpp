@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include <queue>
 #include "heap.h"
 #include "node.h"
@@ -97,16 +98,16 @@ void heap::insert(int substr, int index) {
     }
 }
 
-void heap::insert_str(string str) {
+long long heap::insert_str(string str) {
     long long int str_index;
     numberOfStrings++;
     if (fstack.isCollectionEmpty()) {
         str_index = fstack.get_index();
-        str = str + "$" + to_string(str_index);
+        str = str + "$" + to_string(str_index+1);
         text.push_back(str);
     } else {
         str_index = fstack.get_index();
-        str = str + "$" + to_string(str_index);
+        str = str + "$" + to_string(str_index+1);
         text[str_index] = str;
     }
 
@@ -116,6 +117,7 @@ void heap::insert_str(string str) {
     }
 
     setMaxReaches();
+    return str_index+1;
 }
 
 // Returns the node's parent and his position on the table
@@ -140,7 +142,7 @@ void heap::delete_str(int substr) {
 
         } else {
             node *aux = nodeToDelete;
-            auto *childToPromote = new node(INT_MAX, INT_MAX);
+            auto *childToPromote = new node(999, 999); //TODO: check
             int posOfPromotingChild = 0, i = 0;
             for (auto &elem : aux->child->table) {
                 if (elem->getStr() < childToPromote->getStr()) {
@@ -165,9 +167,13 @@ void heap::delete_str(int substr) {
     text[substr - 1] = "";
     fstack.add_deleted(substr-1);
 
-
     setMaxReaches();
-
+}
+bool find(const vector<node*> list, node* val){
+    for(auto &a : list){
+        if (a->getStr() == val->getStr() && a->getIndex() == val->getIndex()) return true;
+    }
+    return false;
 }
 
 // \brief: Search for a pattern in the heap, returns a vector with the nodes (str, index) denoting the position
@@ -180,9 +186,10 @@ void heap::delete_str(int substr) {
 //
 vector<node*> heap::search(string pattern) {
     node *temp = root;
-    std::vector<node *> path, sol;
+    std::vector<node *> path, sol, filteredList;
     int h = 0;
-    while (pattern.size() > h && (temp = temp->child->searchLetter(pattern[h], text, h)) != nullptr) {
+    while (pattern.size() > h && (temp->child->searchLetter(pattern[h], text, h) != nullptr)) {
+        temp = temp->child->searchLetter(pattern[h], text, h);
         path.push_back(temp);
         h++;
     }
@@ -210,29 +217,32 @@ vector<node*> heap::search(string pattern) {
     }
 
     vector<node *> auxSol;
-    while (true) {
-        auxSol.clear();
-        for (auto &elem : path) {
-            if (maxReach.at(make_pair(elem->getStr(), elem->getIndex())) == temp)
-                auxSol.push_back(elem);
-        }
+    for (auto &elem : path) {
+        if (maxReach.at(make_pair(elem->getStr(), elem->getIndex())) == temp)
+            auxSol.push_back(elem);
+    }
 
+    while(true) {
         int h2 = 0;
         temp = root;
+        filteredList.clear();
+
         path.clear();
-        while ((pattern.size() > h + h2) && (temp = temp->child->searchLetter(pattern[h + h2], text, h2)) != nullptr) {
+        sol.clear();
+        while ((pattern.size() > h + h2) && (temp->child->searchLetter(pattern[h + h2], text, h2) != nullptr)) {
+            temp = temp->child->searchLetter(pattern[h + h2], text, h2);
             path.push_back(temp);
             h2++;
         }
 
         if (h2 == pattern.size() - h) {
             queue<node *> q;
-            unordered_map<node *, node *> subtreeKeys;
+            vector<node *> subtreeKeys; // TODO: change data structure if time is too low
             q.push(temp);
             while (!q.empty()) {
                 auto u = q.front();
                 q.pop();
-                subtreeKeys.insert(make_pair(u, u));
+                subtreeKeys.push_back(u);
                 for (auto &elem : u->child->table) {
                     q.push(elem);
                 }
@@ -240,8 +250,9 @@ vector<node*> heap::search(string pattern) {
 
             for (auto &elem : auxSol) { // if they are in the same string... Searching for the nodes in auxSol (list) who have their mrp pointing to the subtree of v'
                 auto p = new node(elem->getStr(), elem->getIndex() + h);
-                if (subtreeKeys.find(maxReach[make_pair(elem->getStr(), elem->getIndex() + h)]) !=
-                    subtreeKeys.end() || find(path.begin(), path.end(), p) != path.end()) { //if getindex()+h is on the path from root to v' with a mrp into the subtree of v'
+                if (find(subtreeKeys, p) ||
+                        (find(subtreeKeys, maxReach[make_pair(p->getStr(), p->getIndex())]) &&
+                         find(path, p))) { //if getindex()+h is on the path from root to v' with a mrp into the subtree of v'
                     sol.push_back(elem);
                 }
             }
@@ -249,11 +260,19 @@ vector<node*> heap::search(string pattern) {
             return sol;
         }
 
-        if (h2 + h != pattern.size()) h = h2;
+        for (auto &elem : auxSol) {
+            auto p = new node(elem->getStr(), elem->getIndex() + h);
+            if ((maxReach[make_pair(p->getStr(), p->getIndex())] == temp) && find(path, p))
+                filteredList.push_back(elem);
+        }
+        auxSol=filteredList;
+        if (h2 + h < pattern.size()) h += h2;
         else {
             return {nullptr};
         }
+
     }
+
 }
 
 void heap::print(node* root) {
@@ -314,4 +333,8 @@ node* heap::getRoot() {
 
 vector<string> heap::getText() {
     return text;
+}
+
+heap::~heap(){
+    delete root;
 }

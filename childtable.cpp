@@ -57,6 +57,10 @@ node* childtable::searchLetter(char t, vector<string> text, int h) {
     if(isEmpty()) return nullptr;
 
     for (int i = 0; i < size; i++) {
+        if(text[table[i]->getStr()].size() <= table[i]->getIndex() + h - 1){
+            cout<<"Error: trying to access above string's length"<<endl;
+            return nullptr;
+        }
         if (text[table[i]->getStr()][table[i]->getIndex() + h - 1] == t)
             return table[i];
     }
