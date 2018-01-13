@@ -9,12 +9,14 @@ based on Ross McConell's: http://www.cs.colostate.edu/PositionHeaps/
 How to Use
 -----------
 Execute the main file and you'll get a menu asking to choose one of the following options:
+```
          0. Quit
          1. Insert String
          2. Delete String
          3. Find positions of a pattern in the strings
          4. Print nodes of the heap
          5. Graph heap
+```
 
 * Option 0 stops the interaction with the structure.
 * Option 1 inserts a string in the structure.
