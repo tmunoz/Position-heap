@@ -9,7 +9,7 @@ based on Ross McConell's: http://www.cs.colostate.edu/PositionHeaps/
 How to Use
 -----------
 Execute the main file and you'll get a menu asking to choose one of the following options:
-``
+```
          0. Quit
          1. Insert String
          2. Delete String
