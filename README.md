@@ -1,6 +1,10 @@
 Dynamic Position Heap
 =====================
 
+Important
+-----------
+Not finished yet... Issues with the delete algorithm, I'm currently trying to find a way to reuse the ID of a deleted string in order to have an unlimited capacity of words that can be inserted in the tree.
+
 Description
 ------------
 A Dynamic implementation of a Position Heap for string indexing and pattern search on a collection of strings,
