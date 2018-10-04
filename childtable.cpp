@@ -1,4 +1,4 @@
-#include <vector>
+#include <unordered_map>
 #include <iostream>
 #include <utility>
 #include "childtable.h"
@@ -14,22 +14,19 @@ bool childtable::isEmpty(){
 
 childtable::childtable(){}
 
-void childtable::print_table() {
-    for(int i=0;i < table.size();i++){
-        cout<<"("<<table[i]->getStr()+1<<", "<<table[i]->getIndex()<<") ";
+void childtable::print_table() { // check for new way to do this in a map instead of vector
+    for(auto elem : table) {
+        cout << "(" << elem.second->getStr() + 1 << ", " << elem.second->getIndex() << ") ";
     }
 }
 
-// \complexity: constant (amortized time, reallocation may happen uses vector::push_back())
+// \complexity: constant, uses std::unordered_map insert.
 //
-void childtable::insert(int strIndex, int inner_index){
+void childtable::insert(int strIndex, int inner_index, char label){
     auto new_child = new node(strIndex, inner_index); //child to be inserted
-    table.push_back(new_child);
+    table.insert({label, new_child});
 }
 
-// Asuming that in the future childtable will be an AVL tree or some other ordered data structure
-// that supports logarithmic search
-//
 // \brief: Finds the position of a node in childtable.
 // \brief: Returns the index of the first element in childtable who's str is equal to the parameter.
 //
@@ -52,17 +49,10 @@ int childtable::search(int str) {
 // \return_value: A pointer to the node.
 //
 // \complexity: linear in the size of childtable.
-node* childtable::searchLetter(char t, vector<string> text, int h) {
-    auto size = table.size();
+node* childtable::searchLetter(char t) {
     if(isEmpty()) return nullptr;
+    auto founded = table.find(t);
+    if(founded != table.end()) return founded->second;
+    else return nullptr;
 
-    for (int i = 0; i < size; i++) {
-        if(text[table[i]->getStr()].size() <= table[i]->getIndex() + h - 1){
-            cout<<"Error: trying to access above string's length"<<endl;
-            return nullptr;
-        }
-        if (text[table[i]->getStr()][table[i]->getIndex() + h - 1] == t)
-            return table[i];
-    }
-    return nullptr;
 }

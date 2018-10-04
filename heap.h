@@ -38,7 +38,7 @@ public:
 
     long long int insert_str(string str);
 
-    void delete_str(int substr);
+    //void delete_str(int substr);
 
     vector<node*> search(string pattern);
 

@@ -6,7 +6,7 @@
 int main() {
     auto *h = new heap();
     int choice = 1;
-    while (choice != 0) {
+    while (choice) {
         cout << "\n";
         cout << "0. Quit\n";
         cout << "1. Insert String\n";
@@ -37,7 +37,7 @@ int main() {
                 int str_number;
                 cout << "Enter the number of the string (From 1 to n): ";
                 cin >> str_number;
-                h->delete_str(str_number);
+               // h->delete_str(str_number);
                 cout << "Deleted !\n";
             }
                 break;

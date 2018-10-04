@@ -63,8 +63,8 @@ void heap::mrpAuxiliar(int str, int index) { // estan como str, index+1
     bool node_reached = false;
     if (root->child->isEmpty()) return;
 
-    while (temp->child->searchLetter(text[str][index + h], text, h) != nullptr) {
-        temp = temp->child->searchLetter(text[str][index + h], text, h);
+    while (temp->child->searchLetter(text[str][index + h]) != nullptr) {
+        temp = temp->child->searchLetter(text[str][index + h]);
         if (temp->getStr() == str && temp->getIndex() - 1 == index) node_reached = true;
         h++;
         if (index + h > text[str].size()) break;
@@ -82,19 +82,19 @@ void heap::mrpAuxiliar(int str, int index) { // estan como str, index+1
 void heap::insert(int substr, int index) {
     node *temp = root;
     if (root->child->isEmpty()) { // checks if root childtable is empty
-        root->child->insert(substr, index);
-    } else if (temp->child->searchLetter(text[substr][index - 1], text)
+        root->child->insert(substr, index, text[substr][index - 1]);
+    } else if (temp->child->searchLetter(text[substr][index - 1])
                == nullptr) { // checks if root's childtable has the char text[substr][index-1]
-        temp->child->insert(substr, index); // executes childtable search
+        temp->child->insert(substr, index, text[substr][index - 1]); // executes childtable search
     } else {
-        temp = temp->child->searchLetter(text[substr][index - 1], text); // not sending h, because h = 0
+        temp = temp->child->searchLetter(text[substr][index - 1]); // not sending h, because h = 0
         int new_index = index + 1;  // h+=1
-        while (temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index) != nullptr) {
-            temp = temp->child->searchLetter(text[substr][new_index - 1], text, new_index - index);
+        while (temp->child->searchLetter(text[substr][new_index - 1]) != nullptr) {
+            temp = temp->child->searchLetter(text[substr][new_index - 1]);
             new_index++;
             if (new_index > text[substr].size()) return;
         }
-        temp->child->insert(substr, index);
+        temp->child->insert(substr, index, text[substr][index - 1]);
     }
 }
 
@@ -131,7 +131,7 @@ std::pair<node*, int> heap::searchStr(node* root, int str) {
         return heap::searchStr(root->child->table[i], str);
     }
 }
-
+/*
 void heap::delete_str(int substr) {
     std::pair<node *, int> parent = heap::searchStr(root, substr - 1); //substr-1 because strings are stored from 0 to n
     while (parent.first) {
@@ -168,7 +168,8 @@ void heap::delete_str(int substr) {
     fstack.add_deleted(substr-1);
 
     setMaxReaches();
-}
+}*/
+
 bool find(const vector<node*> list, node* val){
     for(auto &a : list){
         if (a->getStr() == val->getStr() && a->getIndex() == val->getIndex()) return true;
@@ -188,13 +189,13 @@ vector<node*> heap::search(string pattern) {
     node *temp = root;
     std::vector<node *> path, sol, filteredList;
     int h = 0;
-    while (pattern.size() > h && (temp->child->searchLetter(pattern[h], text, h) != nullptr)) {
-        temp = temp->child->searchLetter(pattern[h], text, h);
+    while (pattern.size() > h && (temp->child->searchLetter(pattern[h]) != nullptr)) {
+        temp = temp->child->searchLetter(pattern[h]);
         path.push_back(temp);
         h++;
     }
     if (pattern.size() == h) {
-        queue<node *> q;
+        queue<node*> q;
         unordered_map<node *, node *> subtreeKeys;
         q.push(temp);
         while (!q.empty()) {
@@ -203,7 +204,7 @@ vector<node*> heap::search(string pattern) {
             sol.push_back(u);
             subtreeKeys.insert(make_pair(u, u));
             for (auto &elem : u->child->table) {
-                q.push(elem);
+                q.push(elem.second);
             }
         }
 
@@ -229,8 +230,8 @@ vector<node*> heap::search(string pattern) {
 
         path.clear();
         sol.clear();
-        while ((pattern.size() > h + h2) && (temp->child->searchLetter(pattern[h + h2], text, h2) != nullptr)) {
-            temp = temp->child->searchLetter(pattern[h + h2], text, h2);
+        while ((pattern.size() > h + h2) && (temp->child->searchLetter(pattern[h + h2]) != nullptr)) {
+            temp = temp->child->searchLetter(pattern[h + h2]);
             path.push_back(temp);
             h2++;
         }
@@ -244,7 +245,7 @@ vector<node*> heap::search(string pattern) {
                 q.pop();
                 subtreeKeys.push_back(u);
                 for (auto &elem : u->child->table) {
-                    q.push(elem);
+                    q.push(elem.second);
                 }
             }
 
@@ -279,8 +280,8 @@ void heap::print(node* root) {
     if (root->child->isEmpty()) {
         return;
     }
-    for (int i = 0; i < root->child->size(); i++) {
-        heap::print(root->child->table[i]);
+    for(auto node : root->child->table){
+        heap::print(node.second);
     }
     root->child->print_table();
 }
