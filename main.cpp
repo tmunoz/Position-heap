@@ -37,7 +37,7 @@ int main() {
                 int str_number;
                 cout << "Enter the number of the string (From 1 to n): ";
                 cin >> str_number;
-               // h->delete_str(str_number);
+                h->delete_str(str_number);
                 cout << "Deleted !\n";
             }
                 break;

@@ -38,17 +38,17 @@ public:
 
     long long int insert_str(string str);
 
-    //void delete_str(int substr);
+    void delete_str(int str);
 
     vector<node*> search(string pattern);
 
-    void print(node *root);
+    void print(node* root);
 
-    std::pair<node *, int> searchStr(node *root, int str);
+    pair<node*, int> searchStrNodes(node* root, int str, int i = 0);
 
     void GraphTree();
 
-    void GraphTreeRecurse(node *root, ostream &out, int h = 0);
+    void GraphTreeRecurse(node* root, ostream &out, int h = 0);
 
     void setMaxReaches();
 

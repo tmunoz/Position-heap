@@ -37,7 +37,7 @@ heap::heap(){
 void heap::setMaxReaches() {
     maxReach.clear();
     for (int i = 0; i < text.size(); i++) { // i = string & j = index
-        if (text[i] == "") continue;
+        if (text[i].empty()) continue;
         for (int j = 0; j < text[i].size() - 1; j++) {
             mrpAuxiliar(i, j);
         }
@@ -77,24 +77,24 @@ void heap::mrpAuxiliar(int str, int index) { // estan como str, index+1
 //  label text[string][index+h] is not in the childtable of a node.
 //
 // \complexity: O(h*k) where h is the height of the last node reached and k is the number of different labels in the text.
-// TODO: ask if it is kinda linear?? O(K*h) = O(h) and if the complexity is ok
+// TODO: check complexity
 //
 void heap::insert(int substr, int index) {
     node *temp = root;
     if (root->child->isEmpty()) { // checks if root childtable is empty
-        root->child->insert(substr, index, text[substr][index - 1]);
-    } else if (temp->child->searchLetter(text[substr][index - 1])
+        root->child->insert(substr, index, text[substr][index]);
+    } else if (temp->child->searchLetter(text[substr][index])
                == nullptr) { // checks if root's childtable has the char text[substr][index-1]
-        temp->child->insert(substr, index, text[substr][index - 1]); // executes childtable search
+        temp->child->insert(substr, index, text[substr][index]); // executes childtable search
     } else {
-        temp = temp->child->searchLetter(text[substr][index - 1]); // not sending h, because h = 0
-        int new_index = index + 1;  // h+=1
-        while (temp->child->searchLetter(text[substr][new_index - 1]) != nullptr) {
-            temp = temp->child->searchLetter(text[substr][new_index - 1]);
+        temp = temp->child->searchLetter(text[substr][index]);
+        int new_index = index + 1;
+        while (temp->child->searchLetter(text[substr][new_index]) != nullptr) {
+            temp = temp->child->searchLetter(text[substr][new_index]);
             new_index++;
             if (new_index > text[substr].size()) return;
         }
-        temp->child->insert(substr, index, text[substr][index - 1]);
+        temp->child->insert(substr, index, text[substr][index+1]);
     }
 }
 
@@ -112,63 +112,66 @@ long long heap::insert_str(string str) {
     }
 
     for (int i = 0; i < str.size() - 1; i++) {
-        if (text[str_index][i] == '$') break;
-        insert(str_index, i + 1);
+        if (text[str_index][i] == '$') {
+            //insert(str_index, i-1);
+            break;
+        }
+        insert(str_index, i);
     }
 
     setMaxReaches();
     return str_index+1;
 }
 
-// Returns the node's parent and his position on the table
-std::pair<node*, int> heap::searchStr(node* root, int str) {
+// Returns the node's parent and his key on the table
+pair<node*, int> heap::searchStrNodes(node* root, int str, int i) {
     if (root->child->isEmpty()) return {nullptr, 0};
 
-    int found = root->child->search(str);
-    if (found >= 0) return std::make_pair(root, found);
+    node* found = root->child->searchLetter(text[str-1][i]);
+    if(!found) return {nullptr, 0};
+    else if (found->getStr() == str-1 ) return {root, i};
 
-    for (int i = 0; i < root->child->size(); i++) {
-        return heap::searchStr(root->child->table[i], str);
+    else {
+        return searchStrNodes(found, str, i+1);
     }
+
 }
-/*
-void heap::delete_str(int substr) {
-    std::pair<node *, int> parent = heap::searchStr(root, substr - 1); //substr-1 because strings are stored from 0 to n
-    while (parent.first) {
-        node *nodeToDelete = parent.first->child->table[parent.second];
-        if (nodeToDelete->child->isEmpty()) {
-            parent.first->child->table.erase(parent.first->child->table.begin() + parent.second);
+
+void heap::delete_str(int str) {
+    pair<node*, int> parent = heap::searchStrNodes(root, str);
+    while(parent.first){
+        node* nodeToDelete = parent.first->child->table[text[str-1][parent.second]];
+        if(nodeToDelete->child->isEmpty()){
+            parent.first->child->table.erase(text[str-1][parent.second]);
             delete nodeToDelete;
 
-        } else {
+        } else{
             node *aux = nodeToDelete;
             auto *childToPromote = new node(999, 999); //TODO: check
-            int posOfPromotingChild = 0, i = 0;
+            char keyToPromote = ' ';
             for (auto &elem : aux->child->table) {
-                if (elem->getStr() < childToPromote->getStr()) {
-                    childToPromote = elem;
-                    posOfPromotingChild = i;
-                } else if (elem->getStr() == childToPromote->getStr() &&
-                           elem->getIndex() < childToPromote->getIndex()) {
-                    childToPromote = elem;
-                    posOfPromotingChild = i;
+                if (elem.second->getStr() < childToPromote->getStr()) {
+                    childToPromote = elem.second;
+                    keyToPromote = elem.first;
+                } else if (elem.second->getStr() == childToPromote->getStr() &&
+                        elem.second->getIndex() < childToPromote->getIndex()) {
+                    childToPromote = elem.second;
+                    keyToPromote = elem.first;
                 }
-                ++i;
             }
-            aux->child->table.erase(aux->child->table.begin() + posOfPromotingChild);
-            childToPromote->child->table.insert(childToPromote->child->table.end(),
-                                                aux->child->table.begin(), aux->child->table.end());
-            parent.first->child->table[parent.second] = childToPromote;
+            aux->child->table.erase(keyToPromote);
+            childToPromote->child->table.insert(aux->child->table.begin(), aux->child->table.end());
+            parent.first->child->table.erase(text[str-1][parent.second]);
+            parent.first->child->table.insert({text[str-1][parent.second], childToPromote});
             delete nodeToDelete;
         }
-        parent = heap::searchStr(root, substr - 1);
+        parent = heap::searchStrNodes(root, str, parent.second+1);
     }
-
-    text[substr - 1] = "";
-    fstack.add_deleted(substr-1);
+    text[str - 1] = "";
+    fstack.add_deleted(str-1);
 
     setMaxReaches();
-}*/
+}
 
 bool find(const vector<node*> list, node* val){
     for(auto &a : list){
@@ -301,10 +304,9 @@ void heap::GraphTree() {
 
 void heap::GraphTreeRecurse(node* root, ostream &out, int h) {
     if (root->child->isEmpty()) return;
-
-    for (int i = 0; i < root->child->size(); i++) {
-        int child_str = root->child->table[i]->getStr();
-        int child_index = root->child->table[i]->getIndex();
+    for ( auto child : root->child->table){
+        int child_str = child.second->getStr();
+        int child_index = child.second->getIndex();
         int parent_index;
         int parent_str;
 
@@ -322,10 +324,9 @@ void heap::GraphTreeRecurse(node* root, ostream &out, int h) {
             << text[child_str][child_index - 1 + h] << "\"]\n";
     }
 
-    for (int i = 0; i < root->child->size(); i++) {
-        heap::GraphTreeRecurse(root->child->table[i], out, h + 1);
+    for (auto child : root->child->table) {
+        heap::GraphTreeRecurse(child.second, out, h + 1);
     }
-
 }
 
 node* heap::getRoot() {

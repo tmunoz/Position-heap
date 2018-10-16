@@ -23,7 +23,7 @@ void childtable::print_table() { // check for new way to do this in a map instea
 // \complexity: constant, uses std::unordered_map insert.
 //
 void childtable::insert(int strIndex, int inner_index, char label){
-    auto new_child = new node(strIndex, inner_index); //child to be inserted
+    auto new_child = new node(strIndex, inner_index+1); //child to be inserted
     table.insert({label, new_child});
 }
 
@@ -32,7 +32,7 @@ void childtable::insert(int strIndex, int inner_index, char label){
 //
 // \param: str The target string.
 //
-// \complexity: linear in the size of childtable.
+// \complexity:
 int childtable::search(int str) {
     auto size = table.size();
 
@@ -48,7 +48,7 @@ int childtable::search(int str) {
 //
 // \return_value: A pointer to the node.
 //
-// \complexity: linear in the size of childtable.
+// \complexity:
 node* childtable::searchLetter(char t) {
     if(isEmpty()) return nullptr;
     auto founded = table.find(t);
