@@ -6,7 +6,7 @@
 int main() {
     auto *h = new heap();
     int choice = 1;
-    while (choice != 0) {
+    while (choice) {
         cout << "\n";
         cout << "0. Quit\n";
         cout << "1. Insert String\n";

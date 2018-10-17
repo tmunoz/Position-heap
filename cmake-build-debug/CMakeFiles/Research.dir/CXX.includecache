@@ -6,19 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/Thomas/Documents/Research/Position Heap/childtable.cpp
-vector
--
-iostream
--
-utility
--
-childtable.h
 /Users/Thomas/Documents/Research/Position Heap/childtable.h
-node.h
-/Users/Thomas/Documents/Research/Position Heap/node.h
-
-/Users/Thomas/Documents/Research/Position Heap/childtable.h
+unordered_map
+-
 vector
 -
 
@@ -57,22 +47,6 @@ unordered_map
 -
 fast_stack.hpp
 /Users/Thomas/Documents/Research/Position Heap/fast_stack.hpp
-
-/Users/Thomas/Documents/Research/Position Heap/main.cpp
-iostream
--
-heap.h
-/Users/Thomas/Documents/Research/Position Heap/heap.h
-node.h
-/Users/Thomas/Documents/Research/Position Heap/node.h
-childtable.h
-/Users/Thomas/Documents/Research/Position Heap/childtable.h
-
-/Users/Thomas/Documents/Research/Position Heap/node.cpp
-node.h
-/Users/Thomas/Documents/Research/Position Heap/node.h
-childtable.h
-/Users/Thomas/Documents/Research/Position Heap/childtable.h
 
 /Users/Thomas/Documents/Research/Position Heap/node.h
 vector
